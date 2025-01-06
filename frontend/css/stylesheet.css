@@ -1,0 +1,151 @@
+body {
+    background-image: url('../images/Main/Soccer\ Players\ Wallpaper.jpg'); /* Path to your image */
+    height: 100vh; /* Full viewport height */
+    background-size: 100% ; /* Full width, auto height */
+    background-repeat: repeat-y; /* Repeat vertically */
+    background-position: center; /* Center alignment */
+    background-blend-mode: screen; /* Blend to achieve the flip effect */
+    color: white;
+}
+img{
+    min-width: 60px;
+}
+/*------------------------------------------------------------------*/
+div:hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1.0125);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Example shadow */
+}
+
+/*------------------------------------------------------------------*/
+#main {
+    display: flex;
+    justify-content: space-between; /* Space between columns */
+    align-items: flex-start; /* Align items at the top */
+    height: 90%;
+}
+
+#left, #right {
+    width: 15%; /* Smaller side sections for balance */
+    margin-top: 2.5%;
+}
+
+#mid {
+    width: 70%; /* Center section with more space */
+}
+
+#characters {
+    box-sizing: border-box;
+    padding: 5px 10px; /* Reduced padding */
+    background-image: radial-gradient(circle, rgba(115, 0, 255, 0.5), rgba(0, 195, 255, 0.5));
+    width: 100%;
+    margin-left: 5%;
+    display: flex;
+    gap: 15px; /* Spacing between images */
+    position: relative;
+    overflow-x: auto; /* Prevent horizontal scrolling */
+    border: solid;
+    border-radius: 1%;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+    
+}
+#characters:nth-child(1){
+    padding-left: 150px;
+}
+#characters img {
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#characters img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+#characters img{
+    width: 60px;
+    height: 60px;
+}
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+span:hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1.3);
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 15px 5px rgb(0, 0, 0), inset 0 0 10px 3px rgba(0, 0, 0, 0.7);
+}
+
+.artifact, .roles, .weapon, .materials {
+    display: flex;
+    align-items: center; /* Align text and images vertically */
+    justify-content: start; /* Align text next to image */
+    gap: 10px; /* Spacing between image and text */
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.artifact img, .roles img, .weapon img, .materials img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artifact span, .roles span, .weapon span, .materials span {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.artifact img:hover, .roles img:hover, .weapon img:hover, .materials img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+#mainImg {
+    width: 100%;
+    height: 100%;
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 80%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 80%);
+    justify-content: end;
+}
+
+#mainImg img {
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+@media (max-width: 768px) {
+    #main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #left, #right {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #mid {
+        width: 90%;
+    }
+}
+
+.artifact span, .roles span, .weapon span, .materials span {
+    font-size: 14px;
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+}
+
+.item p {
+    font-size: 14px;
+    color: #fff;
+}
