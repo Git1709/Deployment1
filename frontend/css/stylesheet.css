@@ -1,15 +1,13 @@
+/* General Styles */
 body {
     background-image: url('../images/Main/Soccer\ Players\ Wallpaper.jpg'); /* Path to your image */
-    height: 100vh; /* Full viewport height */
-    background-size: 100% ; /* Full width, auto height */
-    background-repeat: repeat-y; /* Repeat vertically */
-    background-position: center; /* Center alignment */
-    background-blend-mode: screen; /* Blend to achieve the flip effect */
     color: white;
 }
-img{
+
+img {
     min-width: 60px;
 }
+
 /*------------------------------------------------------------------*/
 div:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -22,16 +20,30 @@ div:hover {
     display: flex;
     justify-content: space-between; /* Space between columns */
     align-items: flex-start; /* Align items at the top */
-    height: 90%;
+    height: calc(100vh - 100px); /* Limit height based on viewport */
+    overflow: hidden; /* Prevent extra height */
 }
 
 #left, #right {
     width: 15%; /* Smaller side sections for balance */
     margin-top: 2.5%;
+    max-height: 100%; /* Prevent columns from exceeding #main height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+    scrollbar-width: none; /* For Firefox: Hide scrollbar */
+    -ms-overflow-style: none; /* For Internet Explorer/Edge: Hide scrollbar */
+}
+
+#left::-webkit-scrollbar, #right::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and newer Edge: Hide scrollbar */
 }
 
 #mid {
     width: 70%; /* Center section with more space */
+    max-height: 100%; /* Ensure it aligns with the sidebars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 #characters {
@@ -47,11 +59,12 @@ div:hover {
     border: solid;
     border-radius: 1%;
     mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
-    
 }
-#characters:nth-child(1){
+
+#characters:nth-child(1) {
     padding-left: 150px;
 }
+
 #characters img {
     height: 50px;
     border-radius: 50%;
@@ -64,10 +77,12 @@ div:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
 }
-#characters img{
+
+#characters img {
     width: 60px;
     height: 60px;
 }
+
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 span:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -115,37 +130,83 @@ span:hover {
 }
 
 #mainImg img {
-    width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%; /* Prevent the image from exceeding its container */
+    object-fit: cover; /* Maintain aspect ratio */
 }
-
+#right .materials:last-child {
+    padding-bottom: 200px; /* Add bottom margin to materials section */
+}
+#left .roles:last-child {
+    padding-bottom: 200px; /* Add bottom margin to materials section */
+}
 /*----------------------------------------------------------------------------------------------------------------------------------*/
+/* Media Queries */
+/* Small Devices (e.g., Galaxy M51) */
 @media (max-width: 768px) {
     #main {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row; /* Ensure left and right align horizontally */
+        align-items: flex-start; /* Align items at the top */
     }
 
     #left, #right {
-        width: 100%;
-        margin-top: 10px;
+        width: 20%; /* Both left and right take 20% width */
+        margin-top: 0; /* Reset top margin */
+        max-height: 100vh; /* Limit height to the viewport height */
+        overflow-y: auto; /* Allow vertical scrolling */
+        order: 1; /* Ensure left and right sections come first */
+        padding-bottom: 10px; /* Add some space at the bottom */
     }
 
     #mid {
-        width: 90%;
+        width: 60%; /* Center section takes remaining space */
+        height: auto; /* Adjust height based on content */
+        order: 2; /* Place mid section after left and right */
     }
+
+    #characters img {
+        width: 50px; /* Adjust image sizes */
+        height: 50px;
+    }
+
+    #mainImg img {
+        object-fit: contain; /* Ensure proper scaling for mid image */
+        width: 100%; /* Fill the available width */
+    }
+
+    .artifact span, .roles span, .weapon span, .materials span {
+        font-size: 14px; /* Smaller text size */
+    }
+
+    .item img {
+        width: 50px; /* Adjust image sizes */
+        height: 50px;
+    }
+
+    .item p {
+        font-size: 14px; /* Adjust paragraph text size */
+        color: #fff;
+    }
+
+    /* Ensure that the last item inside #right is visible */
+    
 }
 
-.artifact span, .roles span, .weapon span, .materials span {
-    font-size: 14px;
-}
 
-.item img {
-    width: 50px;
-    height: 50px;
-}
+/* Landscape Mode for Galaxy M51 */
+@media (min-width: 768px) and (max-width: 1080px) and (orientation: landscape) {
+    #main {
+        flex-direction: row; /* Side-by-side layout */
+        justify-content: space-around;
+        align-items: flex-start;
+    }
 
-.item p {
-    font-size: 14px;
-    color: #fff;
+    #left, #right {
+        width: 25%; /* Wider side sections */
+    }
+
+    #mid {
+        width: 50%; /* Adjusted center width */
+    }
 }
